@@ -3,12 +3,13 @@ import blogService from "./services/blogs";
 import Blog from "./components/blog";
 import LoginForm from "./components/loginForm";
 import BlogForm from "./components/addBlogForm";
+import SuccessMessage from "./components/SuccessMsg";
 import "./style.css";
 
 function App() {
   const [blogs, setBlogs] = useState([]);
-
   const [user, setUser] = useState(null);
+  const [successMsg, setSuccessMsg] = useState(null);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -29,6 +30,14 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (successMsg) {
+      setTimeout(() => {
+        setSuccessMsg(null);
+      }, 3000);
+    }
+  }, [successMsg]);
+
   const handleLogout = () => {
     window.localStorage.removeItem("loggedBlogApp");
     setUser(null);
@@ -46,6 +55,7 @@ function App() {
   return (
     <>
       <h1 className="title">BlogList App</h1>
+      <SuccessMessage message={successMsg} />
       <div className="logged-user">
         <p>Logged as user: &quot;{user.username}&quot; </p>
         <button onClick={handleLogout}>Logout</button>
@@ -55,7 +65,11 @@ function App() {
           <Blog key={blog.id} blog={blog} />
         ))}
       </div>
-      <BlogForm blogs={blogs} setBlogs={setBlogs} />
+      <BlogForm
+        blogs={blogs}
+        setBlogs={setBlogs}
+        setSuccessMsg={setSuccessMsg}
+      />
     </>
   );
 }

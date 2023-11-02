@@ -28,7 +28,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     border: 3px solid black;
     border-radius: 5px;
     width: 300px;
@@ -65,4 +64,24 @@
 .blog-form>button {
     width: 30%;
     height: 2em;
+}
+
+.success {
+    width: 100%;
+    text-align: center;
+    color: green;
+    border: 3px solid green;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    background-color: lightgreen;
+}
+
+.error {
+    width: 100%;
+    text-align: center;
+    color: red;
+    border: 3px solid red;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    background-color: pink;
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import blogService from "../services/blogs";
 
-const BlogForm = ({ blogs, setBlogs }) => {
+const BlogForm = ({ blogs, setBlogs, setSuccessMsg }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [url, setUrl] = useState("");
@@ -18,6 +18,7 @@ const BlogForm = ({ blogs, setBlogs }) => {
     setTitle("");
     setAuthor("");
     setUrl("");
+    setSuccessMsg("The new blog has been successfully added");
   };
 
   return (
