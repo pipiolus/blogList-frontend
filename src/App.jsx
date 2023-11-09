@@ -19,9 +19,11 @@ function App() {
       const initialBlogs = await blogService.getBlogs();
       setBlogs(initialBlogs);
     };
-
     fetchBlogs();
   }, []);
+  if (blogs.length !== 0) {
+    console.log(blogs);
+  }
 
   useEffect(() => {
     const loggedUserJSON =
@@ -39,7 +41,12 @@ function App() {
         setSuccessMsg(null);
       }, 3000);
     }
-  }, [successMsg]);
+    if (errorMsg) {
+      setTimeout(() => {
+        setErrorMsg(null);
+      }, 3000);
+    }
+  }, [successMsg, errorMsg]);
 
   const blogFormRef = useRef();
 
@@ -49,13 +56,17 @@ function App() {
         title,
         author,
         url,
+        user: user.name,
       };
       const newBlog = await blogService.createBlog(blogObject);
       setBlogs(blogs.concat(newBlog));
       setSuccessMsg("The new blog has been successfully added");
       blogFormRef.current.toggleVisibility();
     } catch (error) {
-      setErrorMsg("Error: Unable to create blog", error.message);
+      setErrorMsg(
+        "Error: Unable to create blog, try login session again",
+        error
+      );
     }
   };
 
@@ -82,12 +93,16 @@ function App() {
         <p>Logged as user: &quot;{user.username}&quot; </p>
         <button onClick={handleLogout}>Logout</button>
       </div>
-      <Togglable buttonLabel="Add new blog" ref={blogFormRef}>
+      <Togglable
+        buttonLabel="new blog"
+        closeButtonLabel="cancel"
+        ref={blogFormRef}
+      >
         <BlogForm createBlog={addBlog} />
       </Togglable>
       <div className="blogs-container">
         {blogs.map((blog) => (
-          <Blog key={blog.id} blog={blog} />
+          <Blog key={blog.id} blog={blog} user={user} />
         ))}
       </div>
     </div>

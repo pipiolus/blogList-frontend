@@ -26,7 +26,9 @@
 .blogs-container {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     width: 100%;
+    margin-top: 2em;
 }
 
 .blog-container {
@@ -35,11 +37,22 @@
     justify-content: center;
     border: 3px solid black;
     border-radius: 5px;
-    width: 300px;
-    margin-top: 2em;
-    margin-right: 0.5em;
+    width: 250px;
     padding: 0.5em;
+    margin-right: 1em;
     word-break: break-word;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+}
+
+.likes>button {
+    height: 50%;
+    margin-left: 0.5em;
+    border-radius: 4px;
+    background-color: #1e40af;
 }
 
 .logged-user {

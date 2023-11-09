@@ -8,8 +8,7 @@ const setToken = (newToken) => {
 
 const getBlogs = async () => {
   const response = await axios.get(baseUrl);
-  const json = await response.data;
-  return json;
+  return response.data;
 };
 
 const createBlog = async (newObj) => {
