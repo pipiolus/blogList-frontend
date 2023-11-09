@@ -17,13 +17,10 @@ function App() {
   useEffect(() => {
     const fetchBlogs = async () => {
       const initialBlogs = await blogService.getBlogs();
-      setBlogs(initialBlogs);
+      setBlogs(initialBlogs.sort((a, b) => b.likes - a.likes));
     };
     fetchBlogs();
   }, []);
-  if (blogs.length !== 0) {
-    console.log(blogs);
-  }
 
   useEffect(() => {
     const loggedUserJSON =
@@ -64,9 +61,36 @@ function App() {
       blogFormRef.current.toggleVisibility();
     } catch (error) {
       setErrorMsg(
-        "Error: Unable to create blog, try login session again",
-        error
+        `Unable to create blog. Error: "${error.response.data.error}"`
       );
+    }
+  };
+
+  const updateLikesOf = async (id) => {
+    const blog = blogs.find((blog) => blog.id === id);
+    const updatedBlog = {
+      ...blog,
+      likes: blog.likes + 1,
+    };
+    try {
+      const returnedBlog = await blogService.updateBlog(
+        id,
+        updatedBlog
+      );
+      setBlogs(
+        blogs.map((blog) => (blog.id !== id ? blog : returnedBlog))
+      );
+    } catch (error) {
+      setErrorMsg(
+        "Ups... Something went wrong updting the blog. Try again later"
+      );
+    }
+  };
+
+  const deleteBlog = async (id, blog) => {
+    if (window.confirm(`Delete "${blog}"?`)) {
+      blogService.deleteBlog(id);
+      setBlogs(blogs.filter((b) => b.id !== id));
     }
   };
 
@@ -102,7 +126,13 @@ function App() {
       </Togglable>
       <div className="blogs-container">
         {blogs.map((blog) => (
-          <Blog key={blog.id} blog={blog} user={user} />
+          <Blog
+            key={blog.id}
+            blog={blog}
+            addLike={() => updateLikesOf(blog.id)}
+            user={user}
+            removeBlog={() => deleteBlog(blog.id, blog.title)}
+          />
         ))}
       </div>
     </div>

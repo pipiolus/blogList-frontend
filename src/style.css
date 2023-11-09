@@ -93,7 +93,8 @@
 }
 
 .success {
-    width: 100%;
+    width: 50%;
+    align-self: center;
     text-align: center;
     color: green;
     border: 3px solid green;
@@ -103,11 +104,22 @@
 }
 
 .error {
-    width: 100%;
+    width: 50%;
+    align-self: center;
     text-align: center;
     color: red;
     border: 3px solid red;
     border-radius: 10px;
     font-size: 1.5rem;
     background-color: pink;
+}
+
+.created-by {
+    display: flex;
+    align-items: center;
+}
+
+.created-by>button {
+    margin-left: 0.5em;
+    width: fit-content;
 }
