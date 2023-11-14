@@ -1,6 +1,6 @@
 import { useState, forwardRef, useImperativeHandle } from "react";
+import PropTypes from "prop-types";
 
-// eslint-disable-next-line react/display-name
 const Togglable = forwardRef((props, refs) => {
   const [visible, setVisible] = useState(false);
 
@@ -16,6 +16,13 @@ const Togglable = forwardRef((props, refs) => {
       toggleVisibility,
     };
   });
+
+  Togglable.displayName = "Togglable";
+
+  Togglable.propTypes = {
+    buttonLabel: PropTypes.string.isRequired,
+    closeButtonLabel: PropTypes.string.isRequired,
+  };
 
   return (
     <div>

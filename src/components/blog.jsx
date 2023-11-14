@@ -1,6 +1,6 @@
 import Togglable from "./Togglable";
 
-const Blog = ({ blog, addLike, user, removeBlog }) => {
+const Blog = ({ blog, user, addLike, removeBlog }) => {
   return (
     <div className="blog-container">
       <h3>{blog.title}</h3>

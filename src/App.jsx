@@ -129,8 +129,8 @@ function App() {
           <Blog
             key={blog.id}
             blog={blog}
-            addLike={() => updateLikesOf(blog.id)}
             user={user}
+            addLike={() => updateLikesOf(blog.id)}
             removeBlog={() => deleteBlog(blog.id, blog.title)}
           />
         ))}

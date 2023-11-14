@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import blogService from "../services/blogs";
 import loginService from "../services/login";
 import ErrorMessage from "./ErrorMsg";
+import PropTypes from "prop-types";
 
 const LoginForm = ({ setUser }) => {
   const [username, setUsername] = useState("");
@@ -33,6 +34,12 @@ const LoginForm = ({ setUser }) => {
         "Wrong credentials: incorrect username or password"
       );
     }
+  };
+
+  LoginForm.propTypes = {
+    handleLogin: PropTypes.func.isRequired,
+    username: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
   };
 
   return (
