@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import blogService from "../services/blogs";
 import loginService from "../services/login";
 import ErrorMessage from "./ErrorMsg";
-import PropTypes from "prop-types";
 
 const LoginForm = ({ setUser }) => {
   const [username, setUsername] = useState("");
