@@ -36,12 +36,6 @@ const LoginForm = ({ setUser }) => {
     }
   };
 
-  LoginForm.propTypes = {
-    handleLogin: PropTypes.func.isRequired,
-    username: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-  };
-
   return (
     <div>
       <ErrorMessage message={errorMsg} />
