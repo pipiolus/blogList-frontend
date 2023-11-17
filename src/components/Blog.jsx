@@ -4,9 +4,11 @@ const Blog = ({ blog, user, addLike, removeBlog }) => {
   return (
     <div className="blog-container">
       <h3>{blog.title}</h3>
+      <h4>By {blog.author}</h4>
       <Togglable buttonLabel="view" closeButtonLabel="hide">
-        <h4>By {blog.author}</h4>
-        <a href={blog.url}>{blog.url}</a>
+        <a className="blog-url" href={blog.url}>
+          {blog.url}
+        </a>
         <div className="likes">
           <h4>Likes: {blog.likes}</h4>
           <button onClick={addLike}>👍</button>
