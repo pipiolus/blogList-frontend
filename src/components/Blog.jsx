@@ -3,10 +3,10 @@ import Togglable from "./Togglable";
 const Blog = ({ blog, user, addLike, removeBlog }) => {
   return (
     <div className="blog-container">
-      <h3>{blog.title}</h3>
-      <h4>By {blog.author}</h4>
+      <h3 className="blogTitle">{blog.title}</h3>
+      <h4 className="blogAuthor">By {blog.author}</h4>
       <Togglable buttonLabel="view" closeButtonLabel="hide">
-        <a className="blog-url" href={blog.url}>
+        <a className="blogUrl" href={blog.url}>
           {blog.url}
         </a>
         <div className="likes">

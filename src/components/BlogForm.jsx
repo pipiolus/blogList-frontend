@@ -7,6 +7,7 @@ const BlogForm = ({ createBlog }) => {
 
   const addBlog = (event) => {
     event.preventDefault();
+    console.log(">>>>>>>>>>>>> ADD BLOG");
     createBlog({
       title,
       author,
@@ -20,7 +21,11 @@ const BlogForm = ({ createBlog }) => {
   return (
     <div className="blog-form-container">
       <h3>Add a new blog</h3>
-      <form className="blog-form" onSubmit={addBlog}>
+      <form
+        className="blog-form"
+        onSubmit={addBlog}
+        data-testid="New-Blog-Form"
+      >
         <label htmlFor="title">Title</label>
         <input
           id="title"
@@ -28,7 +33,9 @@ const BlogForm = ({ createBlog }) => {
           name="Title"
           value={title}
           onChange={({ target }) => setTitle(target.value)}
+          placeholder="How to kill more orcs"
           required
+          data-testid="Title-Input"
         />
         <label htmlFor="author">Author</label>
         <input
@@ -37,7 +44,9 @@ const BlogForm = ({ createBlog }) => {
           name="Author"
           value={author}
           onChange={({ target }) => setAuthor(target.value)}
+          placeholder="Frodo Baggins"
           required
+          data-testid="Author-Input"
         />
         <label htmlFor="url">URL</label>
         <input
@@ -46,9 +55,13 @@ const BlogForm = ({ createBlog }) => {
           name="Url"
           value={url}
           onChange={({ target }) => setUrl(target.value)}
+          placeholder="https://yourblogdomain.com/yourblogpath"
           required
+          data-testid="URL-Input"
         />
-        <button type="submit">create</button>
+        <button type="submit" data-testid="Create-Button">
+          create
+        </button>
       </form>
     </div>
   );
