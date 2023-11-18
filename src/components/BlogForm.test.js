@@ -29,9 +29,8 @@ describe("<BlogForm />", () => {
     await user.click(button);
     console.log(createBlog.mock.calls);
 
-    /*     await fireEvent.submit(form);
-     */
-    /*     expect(createBlog).toHaveBeenCalled();
-     */
+    fireEvent.submit(form);
+
+    expect(createBlog).toHaveBeenCalled();
   });
 });
