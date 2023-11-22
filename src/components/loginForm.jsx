@@ -32,6 +32,8 @@ const LoginForm = ({ setUser }) => {
       setErrorMsg(
         "Wrong credentials: incorrect username or password"
       );
+      setUsername("");
+      setPassword("");
     }
   };
 
@@ -41,6 +43,7 @@ const LoginForm = ({ setUser }) => {
       <form className="login-form" onSubmit={handleLogin}>
         username:
         <input
+          id="username"
           className="login-input"
           type="text"
           value={username}
@@ -50,6 +53,7 @@ const LoginForm = ({ setUser }) => {
         />
         password:
         <input
+          id="password"
           className="login-input"
           type="password"
           name="Password"

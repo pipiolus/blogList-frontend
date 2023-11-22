@@ -11,7 +11,9 @@ const Blog = ({ blog, user, addLike, removeBlog }) => {
         </a>
         <div className="likes">
           <h4>Likes: {blog.likes}</h4>
-          <button onClick={addLike}>👍</button>
+          <button className="likeButton" onClick={addLike}>
+            👍
+          </button>
         </div>
         <div className="created-by">
           <p>created by {blog.user.username}</p>

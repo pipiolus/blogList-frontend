@@ -1,11 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import {
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import BlogForm from "./BlogForm";
 
@@ -21,16 +16,13 @@ describe("<BlogForm />", () => {
     const urlInput = screen.getByTestId("URL-Input");
     const button = screen.getByTestId("Create-Button");
 
-    const form = screen.getByTestId("New-Blog-Form");
-
     await user.type(titleInput, "Blog Title");
     await user.type(authorInput, "Blog Author");
-    await user.type(urlInput, "Blog url");
+    await user.type(urlInput, "https://www.testexample.com/");
     await user.click(button);
-    console.log(createBlog.mock.calls);
 
-    fireEvent.submit(form);
-
-    expect(createBlog).toHaveBeenCalled();
+    expect(createBlog.mock.calls).toHaveLength(1);
+    expect(createBlog.mock.calls[0][0].title).toBe("Blog Title");
+    expect(createBlog.mock.calls[0][0].author).toBe("Blog Author");
   });
 });

@@ -59,6 +59,7 @@ function App() {
       setBlogs(blogs.concat(newBlog));
       setSuccessMsg("The new blog has been successfully added");
       blogFormRef.current.toggleVisibility();
+      setBlogs(blogs.sort((a, b) => b.likes - a.likes));
     } catch (error) {
       setErrorMsg(
         `Unable to create blog. Error: "${error.response.data.error}"`
@@ -78,7 +79,9 @@ function App() {
         updatedBlog
       );
       setBlogs(
-        blogs.map((blog) => (blog.id !== id ? blog : returnedBlog))
+        blogs
+          .map((blog) => (blog.id !== id ? blog : returnedBlog))
+          .sort((a, b) => b.likes - a.likes)
       );
     } catch (error) {
       setErrorMsg(
@@ -114,7 +117,7 @@ function App() {
       <ErrorMessage message={errorMsg} />
       <SuccessMessage message={successMsg} />
       <div className="logged-user">
-        <p>Logged as user: &quot;{user.username}&quot; </p>
+        <p>Logged as user: {user.username} </p>
         <button onClick={handleLogout}>Logout</button>
       </div>
       <Togglable
