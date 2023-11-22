@@ -56,10 +56,11 @@ function App() {
         user: user.name,
       };
       const newBlog = await blogService.createBlog(blogObject);
-      setBlogs(blogs.concat(newBlog));
+      setBlogs(
+        blogs.concat(newBlog).sort((a, b) => b.likes - a.likes)
+      );
       setSuccessMsg("The new blog has been successfully added");
       blogFormRef.current.toggleVisibility();
-      setBlogs(blogs.sort((a, b) => b.likes - a.likes));
     } catch (error) {
       setErrorMsg(
         `Unable to create blog. Error: "${error.response.data.error}"`
